@@ -6,7 +6,6 @@ public class BuildingBluepirintCast : MonoBehaviour
 {
 
     RaycastHit hit;
-    Vector3 movePoint;
     public GameObject buildingBlueprint;
     public MeshRenderer myRenderer;
     public Material buildingBlockedMaterial;
@@ -26,7 +25,7 @@ public class BuildingBluepirintCast : MonoBehaviour
     void Update()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        bool building_colliding = Physics.CheckBox(transform.position + new Vector3Int(0, 1, 0), new Vector3(4.0f, 0.0f, 4.0f), Quaternion.identity, layerMask);
+        bool building_colliding = Physics.CheckBox(transform.position + new Vector3Int(0, 5, 0), new Vector3(10.0f, 0.0f, 10.0f), Quaternion.identity, layerMask);
         //Debug.DrawLine(ray.origin, ray.origin + ray.direction, Color.red);
         if (Physics.Raycast(ray, out hit, 50000.0f, (1 << 0)))
         {
@@ -48,7 +47,7 @@ public class BuildingBluepirintCast : MonoBehaviour
 
     public void BuildBuilding()
     {
-        Instantiate(buildingBlueprint, transform.position + new Vector3Int(0, 1, 0), transform.rotation);
+        Instantiate(buildingBlueprint, transform.position, transform.rotation);
         Destroy(gameObject);
     }
 

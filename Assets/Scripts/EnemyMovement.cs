@@ -1,47 +1,49 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
     Vector3 target;
     public float speed = 5.0f;
+    public LayerMask towerMask;
     float distance = 1.5f;
+    List<Vector3> towersPoints = new List<Vector3>();
     void Start()
     {
+        InvokeRepeating("UpdateState", 0.0f, 1 / speed);
         target = GameObject.FindGameObjectWithTag("EnemyTarget").transform.position - (GameObject.FindGameObjectWithTag("EnemyTarget").transform.position - transform.position).normalized*distance;
     }
 
-    // Update is called once per frame
+    void UpdateState()
+    {
+        towersPoints.RemoveRange(0,towersPoints.Count);
+        Collider[] towers = Physics.OverlapSphere(transform.position, speed + 1, towerMask);
+        foreach(Collider k in towers)
+        {
+            towersPoints.Add(k.transform.position);
+        }
+    }
     void Update()
     {
-        Ray leftRay = new Ray(transform.position - transform.right * 0.5f, TowerHP.instance.transform.position - transform.position + transform.right);
-        Ray leftRay2 = new Ray(transform.position - transform.right * 0.5f, TowerHP.instance.transform.position - transform.position - transform.right);
-        Ray rightRay = new Ray(transform.position + transform.right*0.5f, TowerHP.instance.transform.position - transform.position - transform.right );
-        Ray rightRay2 = new Ray(transform.position + transform.right * 0.5f, TowerHP.instance.transform.position - transform.position + transform.right);
-       /* Debug.DrawLine(leftRay.origin, leftRay.direction * 10.0f + leftRay.origin, Color.blue);
-        Debug.DrawLine(leftRay2.origin, leftRay2.direction * 10.0f + leftRay2.origin, Color.green);
-        Debug.DrawLine(rightRay.origin, rightRay.direction * 10.0f + rightRay.origin, Color.blue);
-        Debug.DrawLine(rightRay2.origin, rightRay2.direction * 10.0f + rightRay2.origin, Color.green);*/
-        if (Physics.Raycast(leftRay, speed))
+        if (TowerHP.instance != null)
         {
-          //  Debug.DrawLine(leftRay.origin, leftRay.direction*speed+ leftRay.origin, Color.red);
-            transform.Translate(ShortNormal((target - transform.position).normalized * 0.5f + transform.right * 0.5f) * speed * Time.deltaTime, Space.World);
+            Vector3 direction = TowerHP.instance.transform.position - transform.position;
+            direction.y = 0;
+            transform.rotation = Quaternion.LookRotation(direction, Vector3.up);
+
+            Vector3 missTowers = Vector3.zero;
+            for (int i = 0; i < towersPoints.Count; i++)
+            {
+                if (Vector3.Distance(transform.position, TowerHP.instance.transform.position) < Vector3.Distance(TowerHP.instance.transform.position, towersPoints[i])) continue;
+                float tmp = Vector3.Magnitude(transform.position - towersPoints[i]);
+                Vector3 additive = Vector3.Cross((transform.position - towersPoints[i]).normalized, Vector3.up) * 20.0f / (tmp * tmp);
+
+                if (Vector3.Distance(transform.position + additive, TowerHP.instance.transform.position) < Vector3.Distance(transform.position - additive, TowerHP.instance.transform.position))
+                { missTowers += Vector3.Cross((transform.position - towersPoints[i]).normalized, Vector3.up) * 20.0f / (tmp * tmp); }
+                else { missTowers -= Vector3.Cross((transform.position - towersPoints[i]).normalized, Vector3.up) * 20.0f / (tmp * tmp); }
+            }
+            transform.Translate(ShortNormal((target - transform.position) * 0.5f + missTowers * 0.5f) * speed * Time.deltaTime, Space.World);
         }
-        else if (Physics.Raycast(leftRay2, speed))
-        {
-          //  Debug.DrawLine(leftRay2.origin, leftRay2.direction * speed + leftRay2.origin, Color.red);
-            transform.Translate(ShortNormal((target - transform.position).normalized * 0.5f + transform.right * 0.5f) * speed * Time.deltaTime, Space.World);
-        }
-        else if (Physics.Raycast(rightRay, speed))
-        {
-          //  Debug.DrawLine(rightRay.origin, rightRay.direction * speed + rightRay.origin, Color.red);
-            transform.Translate(ShortNormal((target - transform.position).normalized * 0.5f - transform.right * 0.5f) * speed * Time.deltaTime, Space.World);
-        }
-        else if (Physics.Raycast(rightRay2, speed))
-        {
-           // Debug.DrawLine(rightRay2.origin, rightRay2.direction * speed + rightRay2.origin, Color.red);
-            transform.Translate(ShortNormal((target - transform.position).normalized * 0.5f - transform.right * 0.5f) * speed * Time.deltaTime, Space.World);
-        }
-        else { transform.Translate(ShortNormal(target - transform.position) * speed * Time.deltaTime, Space.World); }
     }
 
     Vector3 ShortNormal(Vector3 vec)

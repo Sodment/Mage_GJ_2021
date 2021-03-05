@@ -25,12 +25,11 @@ public class BuildingBluepirintCast : MonoBehaviour
     void Update()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        bool building_colliding = Physics.CheckBox(transform.position + new Vector3Int(0, 5, 0), new Vector3(10.0f, 0.0f, 10.0f), Quaternion.identity, layerMask);
-        //Debug.DrawLine(ray.origin, ray.origin + ray.direction, Color.red);
         if (Physics.Raycast(ray, out hit, 50000.0f, (1 << 0)))
         {
             transform.position = hit.point;
         }
+        bool building_colliding = Physics.CheckBox(transform.position, new Vector3(2.0f, 0.0f, 2.0f), Quaternion.identity, layerMask);
         if (building_colliding)
         {
             BuildingBlocked();

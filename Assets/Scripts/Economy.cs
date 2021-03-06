@@ -5,7 +5,7 @@ using UnityEngine;
 public class Economy : MonoBehaviour
 {
     public static Economy instance;
-    public static long player_money = 100;
+    public long player_money = 100;
 
     private void Awake()
     {

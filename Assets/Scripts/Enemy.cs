@@ -13,7 +13,7 @@ public class Enemy : MonoBehaviour
         GetComponent<EnemyMovement>().distance = data.attackRange - 0.1f;
         GetComponent<EnemyAttack>().dmg = data.attack;
         GetComponent<EnemyAttack>().reload = data.attackCooldown;
-        GetComponent<EnemyAttack>().range = data.attackRange;
+        GetComponent<EnemyAttack>().range = data.attackRange+0.2f;
         GetComponent<EnemyHP>().health = data.health;
         GetComponent<EnemyHP>().reward = data.reward;
     }

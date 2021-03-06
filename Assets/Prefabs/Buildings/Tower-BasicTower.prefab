@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5362270247326942474}
   - component: {fileID: 7894365019784180160}
   - component: {fileID: 2024835842780246159}
+  - component: {fileID: -4405909694527728372}
   m_Layer: 8
   m_Name: Tower-BasicTower
   m_TagString: Untagged
@@ -95,3 +96,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.5007467, y: 1.2512501, z: 0.5007467}
   m_Center: {x: 0, y: 0.6256251, z: -0.000000029802322}
+--- !u!114 &-4405909694527728372
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8542931951629029397}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b948b64165cd5040b3ad628d7e3d99f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data: {fileID: 11400000, guid: 77924fffe37ddfa4ebb8b728c10aa239, type: 2}
+  mask:
+    serializedVersion: 2
+    m_Bits: 128

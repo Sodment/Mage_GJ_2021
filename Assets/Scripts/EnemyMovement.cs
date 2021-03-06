@@ -12,15 +12,17 @@ public class EnemyMovement : MonoBehaviour
     void Start()
     {
         animControl = GetComponent<EnemyAnimationController>();
-        InvokeRepeating("UpdateState", 0.0f, 1 / speed);
+       // InvokeRepeating("UpdateState", 0.0f, 1 / speed);
         target = GameObject.FindGameObjectWithTag("EnemyTarget").transform.position - (GameObject.FindGameObjectWithTag("EnemyTarget").transform.position - transform.position).normalized*distance;
+        UpdateState();
     }
 
-    void UpdateState()
+    void UpdateState() //every time then playr bulid new tower
     {
+        GameObject[] tmp = GameObject.FindGameObjectsWithTag("Tower");
         towersPoints.RemoveRange(0,towersPoints.Count);
-        Collider[] towers = Physics.OverlapSphere(transform.position, speed + 1, towerMask);
-        foreach(Collider k in towers)
+        //Collider[] towers = Physics.OverlapSphere(transform.position, 3, towerMask);
+        foreach(GameObject k in tmp)
         {
             towersPoints.Add(k.transform.position);
         }
@@ -34,15 +36,17 @@ public class EnemyMovement : MonoBehaviour
                 Vector3 missTowers = Vector3.zero;
                 for (int i = 0; i < towersPoints.Count; i++)
                 {
-                    if (Vector3.Distance(transform.position, TowerHP.instance.transform.position) < Vector3.Distance(TowerHP.instance.transform.position, towersPoints[i])) continue;
-                    float tmp = Vector3.Magnitude(transform.position - towersPoints[i]);
-                    Vector3 additive = Vector3.Cross((transform.position - towersPoints[i]).normalized, Vector3.up) * 20.0f / (tmp * tmp);
+                    if (transform.position.magnitude+1.5f < towersPoints[i].magnitude) continue;
+
+                    float tmp = 1.0f/Mathf.Max(Vector3.Magnitude(transform.position - towersPoints[i])-1.5f, 0.001f);
+
+                    Vector3 additive = Vector3.Cross((transform.position - towersPoints[i]).normalized, Vector3.up) * tmp;
 
                     if (Vector3.Distance(transform.position + additive, TowerHP.instance.transform.position) < Vector3.Distance(transform.position - additive, TowerHP.instance.transform.position))
-                    { missTowers += Vector3.Cross((transform.position - towersPoints[i]).normalized, Vector3.up) * 20.0f / (tmp * tmp); }
-                    else { missTowers -= Vector3.Cross((transform.position - towersPoints[i]).normalized, Vector3.up) * 20.0f / (tmp * tmp); }
+                    { missTowers += additive; }
+                    else { missTowers -= additive; }
                 }
-                Vector3 direction = (target - transform.position) * 0.5f + missTowers * 0.5f;
+                Vector3 direction = (target - transform.position).normalized  + missTowers;
                 direction.y = 0;
                 transform.Translate(ShortNormal(direction) * speed * Time.deltaTime, Space.World);
 

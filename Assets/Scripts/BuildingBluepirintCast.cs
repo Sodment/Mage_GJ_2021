@@ -6,11 +6,11 @@ public class BuildingBluepirintCast : MonoBehaviour
 {
 
     RaycastHit hit;
-    public GameObject buildingBlueprint;
-    public MeshRenderer myRenderer;
+    public GameObject buildingPrefab;
+    public MeshRenderer blueprintRenderer;
     public Material buildingBlockedMaterial;
     public Material buildingPossibleMaterial;
-    int layerMask = 1 << 6;
+    int layerMask = 1 << 8;
     // Start is called before the first frame update
     void Start()
     {
@@ -46,17 +46,17 @@ public class BuildingBluepirintCast : MonoBehaviour
 
     public void BuildBuilding()
     {
-        Instantiate(buildingBlueprint, transform.position, transform.rotation);
+        Instantiate(buildingPrefab, transform.position, transform.rotation);
         Destroy(gameObject);
     }
 
     public void BuildingBlocked()
     {
-        myRenderer.material = buildingBlockedMaterial;
+        blueprintRenderer.material = buildingBlockedMaterial;
     }
 
     public void BuildingPossible()
     {
-        myRenderer.material = buildingPossibleMaterial;
+        blueprintRenderer.material = buildingPossibleMaterial;
     }
 }

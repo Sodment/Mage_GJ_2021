@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class Turret : MonoBehaviour
@@ -6,10 +7,11 @@ public class Turret : MonoBehaviour
     TowerData data;
     EnemyHP target;
     public LayerMask mask;
-
+    TrailRenderer trail;
     private void Start()
     {
         InvokeRepeating("UpdateTarget", 0.0f, data.reload);
+        trail = GetComponentInChildren<TrailRenderer>();
     }
 
     void UpdateTarget()
@@ -37,7 +39,27 @@ public class Turret : MonoBehaviour
 
         if (target != null)
         {
-            target.GetDMG(data.damage);
+            trail.transform.position = transform.position + Vector3.up * 1.2f;
+            trail.Clear();
+            StartCoroutine("Fire");
+        }
+    }
+
+    IEnumerator Fire()
+    {
+        float lastDist = float.MaxValue;
+        Vector3 dir = (target.transform.position - trail.transform.position).normalized * 20.0f;
+        while (target != null)
+        {
+            float dist = Vector3.Distance(trail.transform.position, target.transform.position);
+            if (dist > lastDist)
+            {
+                target.GetDMG(data.damage);
+                break;
+            }
+            lastDist = dist;
+            trail.transform.position += dir * Time.deltaTime;
+            yield return null;
         }
     }
 }

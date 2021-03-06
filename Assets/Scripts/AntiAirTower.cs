@@ -14,10 +14,6 @@ public class AntiAirTower : MonoBehaviour
     {
         InvokeRepeating("UpdateTarget", 0.0f, data.reload);
         trail = GetComponentInChildren<TrailRenderer>();
-        Vector3[] tmp = new Vector3[2];
-        tmp[0] = transform.position;
-        tmp[1] = transform.position + Vector3.up * 50.0f; ;
-        trail.AddPositions(tmp);
     }
 
     void UpdateTarget()
@@ -25,7 +21,7 @@ public class AntiAirTower : MonoBehaviour
         if (target == null || Vector3.Distance(target.transform.position, transform.position) > data.range)
         {
             target = null;
-            Collider[] enemysInRange = Physics.OverlapSphere(transform.position+Vector3.up*data.range, data.range, mask);
+            Collider[] enemysInRange = Physics.OverlapSphere(transform.position+Vector3.up*(data.range+1.0f), data.range, mask);
             float shortestDitance = float.MaxValue;
             Collider closestEnemy = null;
             foreach (Collider k in enemysInRange)
@@ -45,18 +41,26 @@ public class AntiAirTower : MonoBehaviour
 
         if (target != null)
         {
+            trail.transform.position = transform.position+Vector3.up*1.2f;
             trail.Clear();
-            trail.transform.position = transform.position;
             StartCoroutine("Fire");
-            target.GetDMG(data.damage);
         }
     }
 
     IEnumerator Fire()
     {
-        while(target != null && Vector3.Distance(trail.transform.position, target.transform.position) > 0.2f )
+        float lastDist = float.MaxValue;
+        Vector3 dir = (target.transform.position - trail.transform.position).normalized * 20.0f;
+        while (target != null )
         {
-            trail.transform.position += (target.transform.position - transform.transform.position).normalized * 20.0f * Time.deltaTime;
+            float dist = Vector3.Distance(trail.transform.position, target.transform.position);
+            if (dist > lastDist) 
+            {
+                target.GetDMG(data.damage);
+                break;
+            }
+            lastDist = dist;
+            trail.transform.position += dir * Time.deltaTime;
             yield return null;
         }
     }

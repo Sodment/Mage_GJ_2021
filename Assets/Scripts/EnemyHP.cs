@@ -3,6 +3,7 @@ using UnityEngine;
 public class EnemyHP : MonoBehaviour
 {
     public float health = 100.0f;
+    public float reward = 50.0f;
 
     public void GetDMG(float value)
     {

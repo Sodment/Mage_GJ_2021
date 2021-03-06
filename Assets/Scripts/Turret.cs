@@ -2,24 +2,22 @@ using UnityEngine;
 
 public class Turret : MonoBehaviour
 {
+    [SerializeField]
+    TowerData data;
     EnemyHP target;
-    public float range = 5.0f;
     public LayerMask mask;
-
-    public float reload;
-    public float dmg;
 
     private void Start()
     {
-        InvokeRepeating("UpdateTarget", 0.0f, reload);
+        InvokeRepeating("UpdateTarget", 0.0f, data.reload);
     }
 
     void UpdateTarget()
     {
-        if(target == null || Vector3.Distance(target.transform.position, transform.position) > range)
+        if(target == null || Vector3.Distance(target.transform.position, transform.position) > data.range)
         {
             target = null;
-            Collider[] enemysInRange = Physics.OverlapSphere(transform.position, range, mask);
+            Collider[] enemysInRange = Physics.OverlapSphere(transform.position, data.range, mask);
             float shortestDitance = float.MaxValue;
             Collider closestEnemy=null;
             foreach(Collider k in enemysInRange)
@@ -39,7 +37,7 @@ public class Turret : MonoBehaviour
 
         if (target != null)
         {
-            target.GetDMG(dmg);
+            target.GetDMG(data.damage);
         }
     }
 }

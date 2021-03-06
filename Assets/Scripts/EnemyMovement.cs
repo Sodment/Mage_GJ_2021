@@ -6,7 +6,7 @@ public class EnemyMovement : MonoBehaviour
     Vector3 target;
     public float speed = 5.0f;
     public LayerMask towerMask;
-    float distance = 1.5f;
+    public float distance = 1.5f;
     List<Vector3> towersPoints = new List<Vector3>();
     void Start()
     {

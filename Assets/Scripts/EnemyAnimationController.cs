@@ -6,7 +6,7 @@ public class EnemyAnimationController : MonoBehaviour
 
     private void Awake()
     {
-        anim = transform.GetChild(0).gameObject.GetComponent<Animator>();
+        anim = GetComponentInChildren<Animator>();
     }
     public void SwitchToState(string state)
     {

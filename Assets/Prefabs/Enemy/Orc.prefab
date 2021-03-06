@@ -197,10 +197,10 @@ GameObject:
   m_Component:
   - component: {fileID: 2599772629188097719}
   - component: {fileID: 2599772629188097718}
-  - component: {fileID: 2599772629188097720}
+  - component: {fileID: 2599772629188097725}
+  - component: {fileID: 6972240346164503063}
   - component: {fileID: 2599772629188097723}
   - component: {fileID: 2599772629188097722}
-  - component: {fileID: 2599772629188097725}
   - component: {fileID: 2599772629188097721}
   m_Layer: 7
   m_Name: Orc
@@ -237,7 +237,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1.5, z: 0.7}
   m_Center: {x: 0, y: 0.7, z: 0.1}
---- !u!114 &2599772629188097720
+--- !u!114 &2599772629188097725
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -246,7 +246,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 2599772629188097724}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9aadbfaf0826c6d45b5bd644e73674f4, type: 3}
+  m_Script: {fileID: 11500000, guid: f3e4159ff5a575a4ab13d5b7c504b875, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data: {fileID: 11400000, guid: d5973eb3c1f12e841bc4b77ecf89fa5f, type: 2}
+--- !u!114 &6972240346164503063
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2599772629188097724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27ee6614afa8b79449bbe1e32b263e96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
@@ -283,19 +296,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 100
   reward: 50
---- !u!114 &2599772629188097725
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2599772629188097724}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3e4159ff5a575a4ab13d5b7c504b875, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  data: {fileID: 11400000, guid: d5973eb3c1f12e841bc4b77ecf89fa5f, type: 2}
 --- !u!114 &2599772629188097721
 MonoBehaviour:
   m_ObjectHideFlags: 0

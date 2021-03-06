@@ -111,10 +111,10 @@ GameObject:
   m_Component:
   - component: {fileID: 5447517643788541337}
   - component: {fileID: 5447517643788541350}
-  - component: {fileID: 5447517643788541351}
+  - component: {fileID: 5447517643788541346}
+  - component: {fileID: 8211152857260037865}
   - component: {fileID: 5447517643788541348}
   - component: {fileID: 5447517643788541349}
-  - component: {fileID: 5447517643788541346}
   - component: {fileID: 5447517643788541336}
   m_Layer: 7
   m_Name: Slime
@@ -151,7 +151,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &5447517643788541351
+--- !u!114 &5447517643788541346
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -160,13 +160,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 5447517643788541347}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9aadbfaf0826c6d45b5bd644e73674f4, type: 3}
+  m_Script: {fileID: 11500000, guid: f3e4159ff5a575a4ab13d5b7c504b875, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data: {fileID: 11400000, guid: dc3a29a40a4a82044a094d2b944d84a2, type: 2}
+--- !u!114 &8211152857260037865
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5447517643788541347}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27ee6614afa8b79449bbe1e32b263e96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
   towerMask:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 0
   distance: 1.5
 --- !u!114 &5447517643788541348
 MonoBehaviour:
@@ -197,19 +210,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 100
   reward: 50
---- !u!114 &5447517643788541346
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5447517643788541347}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3e4159ff5a575a4ab13d5b7c504b875, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  data: {fileID: 11400000, guid: dc3a29a40a4a82044a094d2b944d84a2, type: 2}
 --- !u!114 &5447517643788541336
 MonoBehaviour:
   m_ObjectHideFlags: 0

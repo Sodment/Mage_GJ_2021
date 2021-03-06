@@ -45,6 +45,10 @@ public class BuildingBluepirintCast : MonoBehaviour
         {
             BuildBuilding();
         }
+        if (Input.GetMouseButtonDown(1))
+        {
+            Destroy(gameObject);
+        }
     }
 
     public void BuildBuilding()

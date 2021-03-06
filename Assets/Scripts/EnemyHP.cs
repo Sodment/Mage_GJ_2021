@@ -17,6 +17,7 @@ public class EnemyHP : MonoBehaviour
     void OnDie()
     {
         //Tutaj wszelkie metody zwi¹zanie z pokonaniem przeciwnika.
+        Economy.instance.player_money += (long)reward;
         Destroy(gameObject); //tmp
     }
 }

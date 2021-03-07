@@ -63,7 +63,7 @@ public class BuildingBluepirintCast : MonoBehaviour
         }
         Economy.instance.player_money -= building_cost;
         Instantiate(buildingPrefab, transform.position, transform.rotation);
-        Destroy(gameObject);
+        //Destroy(gameObject);
     }
 
     public void BuildingBlocked()

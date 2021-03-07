@@ -40,6 +40,6 @@ public class GameLoopMenager : MonoBehaviour
             yield return null;
         }
         yield return null;
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(0);
     }
 }

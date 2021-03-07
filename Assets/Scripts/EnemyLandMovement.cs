@@ -6,9 +6,11 @@ public class EnemyLandMovement : EnemyMovement
     Vector3 target;
     List<Vector3> towersPoints = new List<Vector3>();
     EnemyAnimationController animControl;
+    EnemyParticleController particleControl;
     void Start()
     {
         animControl = GetComponent<EnemyAnimationController>();
+        particleControl = GetComponent<EnemyParticleController>();
         // InvokeRepeating("UpdateState", 0.0f, 1 / speed);
         target = GameObject.FindGameObjectWithTag("EnemyTarget").transform.position - (GameObject.FindGameObjectWithTag("EnemyTarget").transform.position - transform.position).normalized * distance;
         UpdateState();
@@ -52,6 +54,7 @@ public class EnemyLandMovement : EnemyMovement
             else
             {
                 animControl.SwitchToState("Attack");
+                particleControl.EnableParticle();
                 Vector3 direction = TowerHP.instance.transform.position - transform.position;
                 direction.y = 0;
                 transform.rotation = Quaternion.LookRotation(direction, Vector3.up);

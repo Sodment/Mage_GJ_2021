@@ -113,3 +113,9 @@ MonoBehaviour:
   buildingBlockedMaterial: {fileID: 2100000, guid: 6d3ac4e830162d74287e8da4dfd348c5, type: 2}
   buildingPossibleMaterial: {fileID: 2100000, guid: 9191584ed476b6c438558dfeb935be74, type: 2}
   building_cost: 10
+  towerMask:
+    serializedVersion: 2
+    m_Bits: 256
+  treeMask:
+    serializedVersion: 2
+    m_Bits: 512

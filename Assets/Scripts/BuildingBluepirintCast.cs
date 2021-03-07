@@ -12,7 +12,8 @@ public class BuildingBluepirintCast : MonoBehaviour
     public Material buildingPossibleMaterial;
     [SerializeField]
     long building_cost;
-    int layerMask = 1 << 8;
+    public LayerMask towerMask;
+    public LayerMask treeMask;
     // Start is called before the first frame update
     void Start()
     {
@@ -32,7 +33,7 @@ public class BuildingBluepirintCast : MonoBehaviour
         {
             transform.position = hit.point;
         }
-        bool building_colliding = Physics.CheckBox(transform.position, new Vector3(2.0f, 0.0f, 2.0f), Quaternion.identity, layerMask);
+        bool building_colliding = Physics.CheckBox(transform.position, new Vector3(2.0f, 0.0f, 2.0f), Quaternion.identity, towerMask);
         if (building_colliding || !enough_money)
         {
             BuildingBlocked();
@@ -53,6 +54,11 @@ public class BuildingBluepirintCast : MonoBehaviour
 
     public void BuildBuilding()
     {
+        Collider[] collided_trees = Physics.OverlapBox(transform.position, new Vector3(1.0f, 0.0f, 1.0f), Quaternion.identity, treeMask);
+        foreach( Collider tree in collided_trees)
+        {
+            Destroy(tree.gameObject);
+        }
         Economy.instance.player_money -= building_cost;
         Instantiate(buildingPrefab, transform.position, transform.rotation);
         Destroy(gameObject);

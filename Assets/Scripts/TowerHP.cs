@@ -21,7 +21,7 @@ public class TowerHP : MonoBehaviour
 
     void OnDie()
     {
-        Debug.Log("GameOver");
+        GameLoopMenager.instance.GameOver();
         Destroy(gameObject); //tmp
     }
 }

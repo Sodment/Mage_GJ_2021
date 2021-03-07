@@ -6,25 +6,26 @@ using UnityEngine.UI;
 public class NextWaveTimer : MonoBehaviour
 {
     public Text timerText;
-    float timer = 0.0f;
+    float timer = 35.0f;
     int seconds;
 
     // Update is called once per frame
     void Update()
     {
-        timer += Time.deltaTime;
-        seconds = (int)timer % 60;
+        timer -= Time.deltaTime;
+        seconds = Mathf.RoundToInt(timer);
         SetTimerText();
-        if (seconds >= 60)
+        if (timer<=0.0f)
         {
             //EMIT EVENT FOR NEXT WAVE
-            seconds = 0;
+            timer = 60.0f;
             Debug.Log("NEXT WAVE");
+            EnemySpawner.instance.SpawnLevel();
         }
     }
 
     public void SetTimerText()
     {
-        timerText.text = "NEXT WAVE:\n" + (60 - seconds).ToString();
+        timerText.text = "NEXT WAVE:\n" + seconds.ToString();
     }
 }

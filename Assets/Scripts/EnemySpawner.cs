@@ -1,31 +1,50 @@
+using System.Collections;
 using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    public GameObject[] enemyPrefabs;
-    public float interval = 3.5f;
-    public float distanceFromTower = 7.0f;
-    float reload;
+    public static EnemySpawner instance;
+    public Wave[] GameScenario;
+    public float distnce = 7.0f;
 
-    private void Update()
+    [System.Serializable]
+    public struct Wave
     {
-        if (reload <= 0 && TowerHP.instance!=null)
+        public Subwave[] SubWave;
+    }
+    [System.Serializable]
+    public struct Subwave
+    {
+        public GameObject Enemy;
+        public int Count;
+    }
+
+    public int Level=0;
+
+    private void Awake()
+    {
+        if (instance != null) Destroy(instance);
+        instance = this;
+    }
+
+    public void SpawnLevel()
+    {
+        Debug.Log("Spawn");
+        StartCoroutine("Spawn");
+    }
+
+    IEnumerator Spawn()
+    {
+        for (int i = 0; i < GameScenario[Level].SubWave.Length; i++)
         {
-            int enemyToSpawn = Random.Range(3, 10);
-            Vector3 tmp;
-            for (int i = 0; i < enemyToSpawn; i++)
+            for (int j = 0; j < GameScenario[Level].SubWave[i].Count; j++)
             {
-                tmp = new Vector3(Random.Range(-1.0f, 1.0f), 0, Random.Range(-1.0f, 1.0f));
-                tmp = tmp.normalized * distanceFromTower;
-                Instantiate(
-                    enemyPrefabs[Random.Range(0, enemyPrefabs.Length)],
-                    TowerHP.instance.transform.position + tmp,
-                    Quaternion.LookRotation(-tmp)
-                    );
+                GameObject go = (GameObject)Instantiate(GameScenario[Level].SubWave[i].Enemy);
+                float Alpha = Random.Range(60.0f, 240.0f) * Mathf.Deg2Rad;
+                go.transform.position = new Vector3(Mathf.Sin(Alpha) * distnce, go.transform.position.y, Mathf.Cos(Alpha) * distnce);
+                yield return new WaitForSecondsRealtime(0.2f);
             }
-            reload = interval;
         }
-        else
-            reload -= Time.deltaTime;
+        Level++;
     }
 }

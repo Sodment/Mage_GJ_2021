@@ -8,4 +8,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: d1c3109bdb54ad54c8a2b2838528e640
+  - enabled: 1
+    path: Assets/Scenes/BagnoPiotra.unity
+    guid: f892b21e2f34d654ea6e6751e55e0a92
   m_configObjects: {}

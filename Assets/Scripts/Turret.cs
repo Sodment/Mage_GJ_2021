@@ -16,7 +16,7 @@ public class Turret : MonoBehaviour
 
     void UpdateTarget()
     {
-        if(target == null || Vector3.Distance(target.transform.position, transform.position) > data.range)
+        if(target == null || Vector3.Distance(target.transform.position, transform.position) > data.range && TowerHP.instance!=null)
         {
             target = null;
             Collider[] enemysInRange = Physics.OverlapSphere(transform.position, data.range, mask);

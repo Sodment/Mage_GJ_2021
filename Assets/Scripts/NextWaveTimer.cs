@@ -15,7 +15,7 @@ public class NextWaveTimer : MonoBehaviour
         timer += Time.deltaTime;
         seconds = (int)timer % 60;
         SetTimerText();
-        if(seconds >= 60)
+        if (seconds >= 60)
         {
             //EMIT EVENT FOR NEXT WAVE
             seconds = 0;

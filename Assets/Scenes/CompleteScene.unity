@@ -233,7 +233,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 193194290}
   m_LocalRotation: {x: 0.45035893, y: -0.2597247, z: 0.13146536, w: 0.84405977}
-  m_LocalPosition: {x: 9.26, y: 23.7, z: -12.25}
+  m_LocalPosition: {x: 9.26, y: 19.2, z: -12.25}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -820,7 +820,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4428044623210679894, guid: 4ac7739389ab8a04c8d866dbb542d50c, type: 3}
       propertyPath: GameScenario.Array.data[1].SubWave.Array.data[0].Count
-      value: 6
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4428044623210679894, guid: 4ac7739389ab8a04c8d866dbb542d50c, type: 3}
       propertyPath: GameScenario.Array.data[1].SubWave.Array.data[0].Enemy

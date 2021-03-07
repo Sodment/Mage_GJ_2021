@@ -3,10 +3,13 @@ using UnityEngine;
 public class EnemySkyMovement : EnemyMovement
 {
     EnemyAnimationController animControl;
+    EnemyParticleController particleControl;
+
     Vector3 target;
     void Start()
     {
         animControl = GetComponent<EnemyAnimationController>();
+        particleControl = GetComponent<EnemyParticleController>();
         Vector3 tmp = TowerHP.instance.transform.position - transform.position;
         tmp.y = 0;
         target = TowerHP.instance.transform.position - tmp.normalized * distance;
@@ -24,6 +27,7 @@ public class EnemySkyMovement : EnemyMovement
         }
         else
         {
+            particleControl.EnableParticle();
             animControl.SwitchToState("Attack");
         }
     }

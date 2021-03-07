@@ -1,3 +1,3 @@
 #INFO
 
-Game made for WWizard Game Jam of Collegium Da Vinci
+Game made for Mage Jam of Collegium Da Vinci

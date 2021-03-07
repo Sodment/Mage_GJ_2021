@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fc1723b1325f154887e0ad1c2e22436, type: 3}
   m_Name: Orc
   m_EditorClassIdentifier: 
-  movementSpeed: 1
-  attack: 10
+  movementSpeed: 2
+  attack: 4
   attackCooldown: 1
   attackRange: 3
-  health: 40
-  reward: 100
+  health: 250
+  reward: 25

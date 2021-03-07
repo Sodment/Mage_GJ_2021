@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Dragon
   m_EditorClassIdentifier: 
   movementSpeed: 4
-  attack: 2
-  attackCooldown: 0.5
+  attack: 5
+  attackCooldown: 1
   attackRange: 4
-  health: 100
-  reward: 50
+  health: 500
+  reward: 40

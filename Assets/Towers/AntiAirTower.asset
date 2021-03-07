@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bfa5641b6ea43343b015d5d23cf66b4, type: 3}
   m_Name: AntiAirTower
   m_EditorClassIdentifier: 
-  range: 3
-  reload: 0.5
-  damage: 5
+  range: 7
+  reload: 1
+  damage: 15

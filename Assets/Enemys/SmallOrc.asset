@@ -16,5 +16,5 @@ MonoBehaviour:
   attack: 2
   attackCooldown: 1
   attackRange: 3
-  health: 200
-  reward: 50
+  health: 100
+  reward: 15

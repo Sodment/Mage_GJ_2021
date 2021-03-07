@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bfa5641b6ea43343b015d5d23cf66b4, type: 3}
   m_Name: BasicTower
   m_EditorClassIdentifier: 
-  range: 3
-  reload: 0.5
+  range: 5
+  reload: 1
   damage: 10

@@ -54,7 +54,7 @@ public class BuildingBluepirintCast : MonoBehaviour
 
     public void BuildBuilding()
     {
-        Collider[] collided_trees = Physics.OverlapBox(transform.position, new Vector3(1.0f, 0.0f, 1.0f), Quaternion.identity, treeMask);
+        Collider[] collided_trees = Physics.OverlapBox(transform.position, new Vector3(1.0f, 1.0f, 1.0f), Quaternion.identity, treeMask);
         foreach( Collider tree in collided_trees)
         {
             Destroy(tree.gameObject);

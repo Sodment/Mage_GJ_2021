@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 3181076355671066034}
   - component: {fileID: 5897003140683005309}
   - component: {fileID: 2077753803335362253}
-  m_Layer: 0
+  - component: {fileID: 1067979367848167314}
+  m_Layer: 9
   m_Name: drzewo.003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -81,3 +82,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &1067979367848167314
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4068487871504800403}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.7002187, y: 0.9488167, z: 0.72966677}
+  m_Center: {x: -0.0010983795, y: 0.3911861, z: 0.0049237013}

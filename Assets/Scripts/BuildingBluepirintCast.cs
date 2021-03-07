@@ -7,6 +7,7 @@ public class BuildingBluepirintCast : MonoBehaviour
 
     RaycastHit hit;
     public GameObject buildingPrefab;
+    public GameObject treeParticle;
     public MeshRenderer blueprintRenderer;
     public Material buildingBlockedMaterial;
     public Material buildingPossibleMaterial;
@@ -57,6 +58,7 @@ public class BuildingBluepirintCast : MonoBehaviour
         Collider[] collided_trees = Physics.OverlapBox(transform.position, new Vector3(1.0f, 1.0f, 1.0f), Quaternion.identity, treeMask);
         foreach( Collider tree in collided_trees)
         {
+            Instantiate(treeParticle, tree.transform.position, Quaternion.identity);
             Destroy(tree.gameObject);
         }
         Economy.instance.player_money -= building_cost;

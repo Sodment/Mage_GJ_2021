@@ -110,6 +110,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buildingPrefab: {fileID: 4885326896535370478, guid: 5f7a8959c6ab5244fa14dd0ff6b8b4aa, type: 3}
+  treeParticle: {fileID: 1250146280691527462, guid: 4fc4219019dbaed46a39fdba49bb610c, type: 3}
   blueprintRenderer: {fileID: 1645606029328879301}
   buildingBlockedMaterial: {fileID: 2100000, guid: 6d3ac4e830162d74287e8da4dfd348c5, type: 2}
   buildingPossibleMaterial: {fileID: 2100000, guid: 9191584ed476b6c438558dfeb935be74, type: 2}

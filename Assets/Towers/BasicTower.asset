@@ -15,3 +15,6 @@ MonoBehaviour:
   range: 5
   reload: 1
   damage: 10
+  targetMask:
+    serializedVersion: 2
+    m_Bits: 128

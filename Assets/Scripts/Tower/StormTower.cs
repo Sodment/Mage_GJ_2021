@@ -3,7 +3,6 @@ public class StormTower : MonoBehaviour
 {
     [SerializeField]
     TowerData data;
-    public LayerMask mask;
     LineRenderer[] bolts = new LineRenderer[10];
 
     private void Start()
@@ -20,7 +19,7 @@ public class StormTower : MonoBehaviour
 
     void UpdateTarget()
     {
-        Collider[] enemysInRange = Physics.OverlapSphere(transform.position, data.range, mask);
+        Collider[] enemysInRange = Physics.OverlapSphere(transform.position, data.range, data.targetMask);
         int enemyCount = Mathf.Min(10, enemysInRange.Length);
         for(int i=0; i< enemyCount; i++)
         {

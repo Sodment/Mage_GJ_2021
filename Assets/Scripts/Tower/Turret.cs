@@ -6,7 +6,6 @@ public class Turret : MonoBehaviour
     [SerializeField]
     TowerData data;
     EnemyHP target;
-    public LayerMask mask;
     TrailRenderer trail;
     private void Start()
     {
@@ -19,7 +18,7 @@ public class Turret : MonoBehaviour
         if((target == null || Vector3.Distance(target.transform.position, transform.position) > data.range) && TowerHP.instance!=null)
         {
             target = null;
-            Collider[] enemysInRange = Physics.OverlapSphere(transform.position, data.range, mask);
+            Collider[] enemysInRange = Physics.OverlapSphere(transform.position, data.range, data.targetMask);
             float shortestDitance = float.MaxValue;
             Collider closestEnemy=null;
             foreach(Collider k in enemysInRange)

@@ -6,7 +6,6 @@ public class AntiAirTower : MonoBehaviour
     [SerializeField]
     TowerData data;
     EnemyHP target;
-    public LayerMask mask;
     TrailRenderer trail;
     
 
@@ -21,7 +20,7 @@ public class AntiAirTower : MonoBehaviour
         if (target == null || Vector3.Distance(target.transform.position, transform.position) > data.range)
         {
             target = null;
-            Collider[] enemysInRange = Physics.OverlapSphere(transform.position+Vector3.up*(data.range+1.0f), data.range, mask);
+            Collider[] enemysInRange = Physics.OverlapSphere(transform.position+Vector3.up*(data.range+1.0f), data.range, data.targetMask);
             float shortestDitance = float.MaxValue;
             Collider closestEnemy = null;
             foreach (Collider k in enemysInRange)

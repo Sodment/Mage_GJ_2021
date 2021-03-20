@@ -882,6 +882,29 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
+--- !u!1 &1904144416 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4428044623210679891, guid: 4ac7739389ab8a04c8d866dbb542d50c, type: 3}
+  m_PrefabInstance: {fileID: 98724571}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1904144417
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1904144416}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23055e921bd2d5249bbb7b43807775c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyTypes:
+  - {fileID: 4679044119908750734, guid: fc24f790de080f64ebba83a9bccbb20b, type: 3}
+  - {fileID: 6978618680907780888, guid: 534ede3af8fc17b44984f8b379e26858, type: 3}
+  - {fileID: 1570373522526878183, guid: 02073638e7c878a46812124f9c253c42, type: 3}
+  - {fileID: 996861927949025194, guid: c8c6c386231d8af4b9aedee22607d10f, type: 3}
+  - {fileID: 4324269547747816485, guid: a0d7e702b6ec9754f89ca0085f6c0333, type: 3}
 --- !u!1 &1984677543
 GameObject:
   m_ObjectHideFlags: 0

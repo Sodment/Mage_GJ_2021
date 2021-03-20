@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BuildingBluepirintCast : MonoBehaviour
@@ -15,6 +13,8 @@ public class BuildingBluepirintCast : MonoBehaviour
     long building_cost;
     public LayerMask towerMask;
     public LayerMask treeMask;
+
+    bool cursorOnLand;
     // Start is called before the first frame update
     void Start()
     {
@@ -33,6 +33,12 @@ public class BuildingBluepirintCast : MonoBehaviour
         if (Physics.Raycast(ray, out hit, 50000.0f, (1 << 0)))
         {
             transform.position = hit.point;
+            cursorOnLand = true;
+        }
+        else
+        {
+            transform.position = Vector3.down * 5000.0f;
+            cursorOnLand = false;
         }
         bool building_colliding = Physics.CheckBox(transform.position, new Vector3(2.0f, 0.0f, 2.0f), Quaternion.identity, towerMask);
         if (building_colliding || !enough_money)
@@ -45,7 +51,8 @@ public class BuildingBluepirintCast : MonoBehaviour
         }
         if (Input.GetMouseButtonDown(0) && !building_colliding && enough_money)
         {
-            BuildBuilding();
+            if (!cursorOnLand) Destroy(gameObject);
+            else BuildBuilding();
         }
         if (Input.GetMouseButtonDown(1))
         {
@@ -58,8 +65,9 @@ public class BuildingBluepirintCast : MonoBehaviour
         Collider[] collided_trees = Physics.OverlapBox(transform.position, new Vector3(1.0f, 1.0f, 1.0f), Quaternion.identity, treeMask);
         foreach( Collider tree in collided_trees)
         {
-            Instantiate(treeParticle, tree.transform.position, Quaternion.identity);
-            Destroy(tree.gameObject);
+            tree.gameObject.GetComponent<TreeExplode>().Explode(transform.position);
+            //Instantiate(treeParticle, tree.transform.position, Quaternion.identity);
+            //Destroy(tree.gameObject);
         }
         Economy.instance.player_money -= building_cost;
         Instantiate(buildingPrefab, transform.position, transform.rotation);

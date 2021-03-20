@@ -2,11 +2,13 @@ using UnityEngine;
 
 public class TowerHP : MonoBehaviour
 {
+    float maxHP;
     public float health = 100.0f;
     public static TowerHP instance;
 
     private void Awake()
     {
+        maxHP = health;
         if (instance != null) Destroy(instance);
         instance = this;
     }
@@ -17,6 +19,7 @@ public class TowerHP : MonoBehaviour
         {
             OnDie();
         }
+        UIMenager.instance.UpdateHealthBar((float)health / (float)maxHP);
     }
 
     void OnDie()

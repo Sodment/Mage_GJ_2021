@@ -12,7 +12,7 @@ public class EnemySkyMovement : EnemyMovement
         particleControl = GetComponent<EnemyParticleController>();
         Vector3 tmp = TowerHP.instance.transform.position - transform.position;
         tmp.y = 0;
-        target = TowerHP.instance.transform.position - tmp.normalized * distance;
+        target = TowerHP.instance.transform.position - tmp.normalized * (distance-4);
         target.y = transform.position.y;
     }
 

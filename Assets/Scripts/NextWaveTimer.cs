@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,6 +6,7 @@ public class NextWaveTimer : MonoBehaviour
     public Text timerText;
     float timer = 35.0f;
     int seconds;
+    public GameObject skipButton;
 
     // Update is called once per frame
     void Update()
@@ -21,7 +20,19 @@ public class NextWaveTimer : MonoBehaviour
             timer = 60.0f;
             Debug.Log("NEXT WAVE");
             EnemySpawner.instance.SpawnLevel();
+            skipButton.SetActive(false);
         }
+
+        if (GameObject.FindGameObjectsWithTag("Enemy").Length <= 0)
+        {
+            skipButton.SetActive(true);
+        }
+    }
+
+    public void SkipToNextWave()
+    {
+        timer = 0.0f;
+        skipButton.SetActive(false);
     }
 
     public void SetTimerText()
